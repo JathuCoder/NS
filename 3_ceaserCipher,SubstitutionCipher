@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+#define pf printf
+#define sf scanf
+
+char dc[26]="XDGSZANYOBTMJCEVFHKWPLQURI";
+char ec[26]="abcdefghijklmnopqrstuvwxyz";
+
+void e(char*);
+void d(char*);
+
+int main()
+{
+    char p[100];
+
+    // system("cls");  // optional
+
+    pf("\nEnter plain text:");
+    sf("%s", p);
+
+    pf("\nAfter Encryption:\n-----\n");
+    e(p);
+    pf("%s", p);
+
+    pf("\nAfter Decryption:\n-----\n");
+    d(p);
+    pf("%s", p);
+
+    return 0;
+}
+
+void e(char *p)
+{
+    int i=0; 
+    while(*(p+i) != '\0') 
+    {
+        *(p+i) = dc[*(p+i) - 'a'];
+        i++;
+    }
+}
+
+void d(char *p)
+{
+    int j=0; 
+    while(*(p+j) != '\0') 
+    { 
+        int i; 
+        for(i=0;i<26;i++)
+        {
+            if(dc[i] == *(p+j)) 
+                break; 
+        }
+        *(p+j) = ec[i];
+        j++;
+    }
+}
